@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="UTF-8">
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="../stylesheets/style.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+        integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script type="text/javascript">
+    function scrapePage(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "http://localhost:3006/scrapePage", true);
+        xhttp.setRequestHeader("Content-type", "application/json");
+        var urlPath = document.getElementById('URL').value;
+        console.log("difhjdks", urlPath);
+        xhttp.send(JSON.stringify({url: urlPath}));
+        xhttp.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200) {
+                var result = JSON.parse(this.response);
+//                document.getElementById("sourceType").innerHTML = result.sourceType;
+//                document.getElementById("image").src = result.image;
+            }
+        }
+    }
+
+
+  </script>
+</head>
+
+<body>
+<div id="main">
+
+  <div class="form-group row labelDiv">
+    <label for="URL" id = "label" class="col-10 col-form-label">Enter your URL</label>
+  </div>
+  <div class="form-group row">
+    <div class="col-10">
+      <input class="form-control" type="text" id="URL">
+    </div>
+  </div>
+  <div class="form-group row labelDiv">
+      <button type="submit" class="btn btn-info" onCLick="scrapePage();">Scrap the URL</button>
+  </div>
+
+</div>
+</body>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+
+</script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js">
+
+</script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous">
+</script>
+</html>
